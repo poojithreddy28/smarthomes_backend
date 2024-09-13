@@ -1,0 +1,6 @@
+com\smarthomes\servlets\LoginServlet.class
+com\smarthomes\servlets\MinimalServlet.class
+com\smarthomes\servlets\CheckSessionServlet.class
+com\smarthomes\models\NewUser.class
+com\smarthomes\servlets\LogoutServlet.class
+com\smarthomes\servlets\SignupServlet.class
