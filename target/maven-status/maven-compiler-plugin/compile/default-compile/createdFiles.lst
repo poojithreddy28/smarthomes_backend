@@ -3,6 +3,8 @@ com\smarthomes\servlets\MinimalServlet.class
 com\smarthomes\servlets\ProductServlet.class
 com\smarthomes\servlets\CartServlet.class
 com\smarthomes\models\Product.class
+com\smarthomes\models\Cart.class
 com\smarthomes\servlets\SignupServlet.class
+com\smarthomes\models\CartItem.class
 com\smarthomes\models\NewUser.class
 com\smarthomes\servlets\LogoutServlet.class
