@@ -1,3 +1,4 @@
+com\smarthomes\models\Order.class
 com\smarthomes\servlets\LoginServlet.class
 com\smarthomes\servlets\MinimalServlet.class
 com\smarthomes\servlets\ProductServlet.class
@@ -8,3 +9,4 @@ com\smarthomes\servlets\SignupServlet.class
 com\smarthomes\models\CartItem.class
 com\smarthomes\models\NewUser.class
 com\smarthomes\servlets\LogoutServlet.class
+com\smarthomes\servlets\OrderServlet.class

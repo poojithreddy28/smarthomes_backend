@@ -95,7 +95,6 @@ public class CartServlet extends HttpServlet {
         }
     }
 
-    // Handle GET requests to retrieve cart for a specific user
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         setCorsHeaders(response);
@@ -125,6 +124,73 @@ public class CartServlet extends HttpServlet {
             response.setContentType("application/json");
             PrintWriter out = response.getWriter();
             out.print(jsonResponse.toString());
+        }
+    }
+
+    // New DELETE request handler
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        setCorsHeaders(response);
+
+        // Read incoming data from the request
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = request.getReader().readLine()) != null) {
+            sb.append(line);
+        }
+        String requestData = sb.toString();
+
+        try {
+            // Parse incoming JSON request data
+            JSONObject json = new JSONObject(requestData);
+            String username = json.getString("username");
+            String productName = json.getString("productName");
+
+            // Check if user and product exist in the cart
+            if (userCarts.containsKey(username)) {
+                HashMap<String, Cart> userCart = userCarts.get(username);
+
+                if (userCart.containsKey(productName)) {
+                    // Remove the product from the cart
+                    userCart.remove(productName);
+
+                    // Save updated cart data to file
+                    saveCartsToFile();
+
+                    // Respond with success message
+                    response.setStatus(HttpServletResponse.SC_OK);
+                    JSONObject jsonResponse = new JSONObject();
+                    jsonResponse.put("message", "Product removed successfully.");
+                    response.setContentType("application/json");
+                    PrintWriter out = response.getWriter();
+                    out.print(jsonResponse.toString());
+                } else {
+                    // Product not found in cart
+                    response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                    JSONObject jsonResponse = new JSONObject();
+                    jsonResponse.put("error", "Product not found in cart.");
+                    response.setContentType("application/json");
+                    PrintWriter out = response.getWriter();
+                    out.print(jsonResponse.toString());
+                }
+            } else {
+                // User cart not found
+                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                JSONObject jsonResponse = new JSONObject();
+                jsonResponse.put("error", "User cart not found.");
+                response.setContentType("application/json");
+                PrintWriter out = response.getWriter();
+                out.print(jsonResponse.toString());
+            }
+        } catch (Exception e) {
+            // Handle errors gracefully
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            JSONObject jsonResponse = new JSONObject();
+            jsonResponse.put("error", "Failed to delete product from cart.");
+            response.setContentType("application/json");
+            PrintWriter out = response.getWriter();
+            out.print(jsonResponse.toString());
+            e.printStackTrace();
         }
     }
 

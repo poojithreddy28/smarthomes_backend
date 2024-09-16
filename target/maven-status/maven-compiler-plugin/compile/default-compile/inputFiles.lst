@@ -1,3 +1,4 @@
+D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\models\Order.java
 D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\servlets\LogoutServlet.java
 D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\servlets\CartServlet.java
 D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\servlets\SignupServlet.java
@@ -8,3 +9,4 @@ D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\servlets\Lo
 D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\models\Product.java
 D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\models\Cart.java
 D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\models\NewUser.java
+D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\servlets\OrderServlet.java
