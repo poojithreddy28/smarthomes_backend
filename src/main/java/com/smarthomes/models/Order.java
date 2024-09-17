@@ -1,6 +1,8 @@
 package com.smarthomes.models;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -23,6 +25,7 @@ public class Order implements Serializable {
     private String shippingMethod;
     private String storeLocation;
     private HashMap<String, Cart> products;
+    private LocalDate deliveryDate; // New field for delivery date
 
     // Constructor
     public Order(String username, String firstName, String lastName, String phone, String email, String address,
@@ -44,6 +47,9 @@ public class Order implements Serializable {
         this.shippingMethod = shippingMethod;
         this.storeLocation = storeLocation;
         this.products = products;
+
+        // Automatically set delivery date to 14 days from the current date
+        this.deliveryDate = LocalDate.now().plus(14, ChronoUnit.DAYS);
     }
 
     // Getters
@@ -111,68 +117,7 @@ public class Order implements Serializable {
         return products;
     }
 
-    // Setters if needed (optional, depending on your use case)
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
-
-    public void setExpiry(String expiry) {
-        this.expiry = expiry;
-    }
-
-    public void setCvv(String cvv) {
-        this.cvv = cvv;
-    }
-
-    public void setShippingMethod(String shippingMethod) {
-        this.shippingMethod = shippingMethod;
-    }
-
-    public void setStoreLocation(String storeLocation) {
-        this.storeLocation = storeLocation;
-    }
-
-    public void setProducts(HashMap<String, Cart> products) {
-        this.products = products;
+    public LocalDate getDeliveryDate() {
+        return deliveryDate;
     }
 }

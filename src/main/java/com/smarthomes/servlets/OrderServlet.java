@@ -62,7 +62,7 @@ public class OrderServlet extends HttpServlet {
             // Parse incoming JSON data
             JSONObject json = new JSONObject(requestData);
             String username = json.getString("username");
-
+    
             // Extract checkout details
             String firstName = json.getString("firstName");
             String lastName = json.getString("lastName");
@@ -77,28 +77,29 @@ public class OrderServlet extends HttpServlet {
             String cvv = json.getString("cvv");
             String shippingMethod = json.getString("shippingMethod");
             String storeLocation = json.has("storeLocation") ? json.getString("storeLocation") : null;
-
+    
             // Retrieve the cart for the given user
             if (userCarts.containsKey(username)) {
                 HashMap<String, Cart> userCart = userCarts.get(username);
                 
-                // Create a new Order object
+                // Create a new Order object with delivery date set to 2 weeks from now
                 Order newOrder = new Order(username, firstName, lastName, phone, email, address, city, state, postalCode, cardNumber, expiry, cvv, shippingMethod, storeLocation, userCart);
-
+    
                 // Add the new order to the list
                 orders.add(newOrder);
                 
                 // Save updated order data to file
                 saveOrdersToFile();
-
+    
                 // Clear the user's cart after placing the order
                 userCarts.remove(username);
                 saveCartsToFile();
-
-                // Respond with success message
+    
+                // Respond with success message including delivery date
                 JSONObject jsonResponse = new JSONObject();
                 jsonResponse.put("message", "Order placed successfully.");
-                jsonResponse.put("orderId", newOrder.getOrderId());  // Respond with the order ID
+                jsonResponse.put("orderId", newOrder.getOrderId());
+                jsonResponse.put("deliveryDate", newOrder.getDeliveryDate().toString());  // Include delivery date
                 response.setStatus(HttpServletResponse.SC_OK);
                 response.setContentType("application/json");
                 PrintWriter out = response.getWriter();
@@ -122,6 +123,7 @@ public class OrderServlet extends HttpServlet {
             out.print(jsonResponse.toString());
         }
     }
+    
 
     // Load carts from file
     @SuppressWarnings("unchecked")
@@ -138,6 +140,7 @@ public class OrderServlet extends HttpServlet {
     private static void saveCartsToFile() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CART_FILE_PATH))) {
             oos.writeObject(userCarts);
+            System.out.println("Cart data written to file.");  // Debug: Ensure cart data is written to file
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -158,6 +161,7 @@ public class OrderServlet extends HttpServlet {
     private static void saveOrdersToFile() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ORDER_FILE_PATH))) {
             oos.writeObject(orders);
+            System.out.println("Order data written to file.");  // Debug: Ensure order data is written to file
         } catch (IOException e) {
             e.printStackTrace();
         }
