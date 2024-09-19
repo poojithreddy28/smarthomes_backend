@@ -1,7 +1,7 @@
-D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\servlets\DeleteOrderServlet.java
 D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\models\Order.java
 D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\servlets\SignupServlet.java
 D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\servlets\ProductServlet.java
+D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\servlets\CancelOrderServlet.java
 D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\servlets\LogoutServlet.java
 D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\servlets\CartServlet.java
 D:\Docs\Fall2024\EWA\smarthomes_backend\src\main\java\com\smarthomes\servlets\MinimalServlet.java
